@@ -1,11 +1,12 @@
 const express = require("express")
 const Auth = require("../services/auth")
+const { validateLogin, validateSignup } = require("../validators/auth")
 function auth(app){
     const router = express.Router()
     const authService = new Auth()
     app.use("/auth",router)
 
-    router.post('/login',async (req,res)=>{
+    router.post('/login', validateLogin ,async (req,res)=>{
         const {email,password} = req.body
         const response = await authService.login(email,password)
         return res.cookie("token",response.token,{
@@ -15,7 +16,7 @@ function auth(app){
         })
         .json(response)
     })
-    router.post('/signup',async (req,res)=>{
+    router.post('/signup', validateSignup ,async (req,res)=>{
         const user = req.body
         const response = await authService.signup(user)
         return res.cookie("token",response.token,{

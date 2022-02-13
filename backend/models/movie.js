@@ -1,13 +1,14 @@
-const {mongoose} = require('../config/db')
+const { mongoose } = require("../config/db");
 
-const {Schema} = mongoose
+const { Schema } = mongoose;
 
 const movieSchema = new Schema({
-    title:String,
-    date:Date,
-    rating:Number
-})
+  title: String,
+  description: String,
+  date: Date,
+  rating: Number,
+});
 
-const MovieModel = mongoose.model("movies",movieSchema)
+const MovieModel = mongoose.model("movies", movieSchema);
 
-module.exports = MovieModel
+module.exports = MovieModel;

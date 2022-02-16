@@ -7,6 +7,11 @@ const movieSchema = new Schema({
   description: String,
   date: Date,
   rating: Number,
+  imgURL : String,
+  editor:{
+    ref:"UserModel",
+    type:Schema.Types.ObjectId
+  }
 });
 
 const MovieModel = mongoose.model("movies", movieSchema);

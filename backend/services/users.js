@@ -8,6 +8,7 @@ class Users{
     async getByEmail(email){
         const user = await UserModel.findOne({email:email})
         return user
+        
     }
 
     async getAll(){

@@ -23,6 +23,10 @@ class Auth{
 
     async login(email,password){
         const user = await this.users.getByEmail(email)
+        //si se envia un correo falso crashea el server, para eso sirve la validacion
+        if(!user){
+            return {success:false,message:"Las credenciales no coinciden"}
+        }
         const correctPassword = await bcrypt.compare(password,user.password)
         if(user && correctPassword){
             // user.password = undefined
@@ -34,18 +38,20 @@ class Auth{
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                role: user.role?user.role:"REGULAR",
+                role: user.role?user.role:0,
             }
             const token = jwt.sign(data,jwt_secret,{expiresIn:"1d"})
             return {success:true,data,token}
+        } else {
+            return {success:false,message:"Las credenciales no coinciden"}
         }
 
-        return {success:false,message:"Las credenciales no coinciden"}
+        
     }
 
     async signup(userData){
         if(await this.users.getByEmail(userData.email)){
-            return {succes:false,message:"Usuario ya registrado"}
+            return {success:false,message:"Usuario ya registrado"}
         }else{
             userData.role = 0
             userData.password = await this.hashPassword(userData.password)

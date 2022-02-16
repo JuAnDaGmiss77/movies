@@ -1,5 +1,10 @@
 const MovieModel = require("../models/movie")
+const Users = require("../services/users")
 class Movies{
+    constructor(){
+        this.users = new Users()
+    }
+
     async get(id){
         const movie = await MovieModel.findById(id)
         return movie
@@ -12,8 +17,17 @@ class Movies{
     }
 
     async create(data){
-        const movie = await MovieModel.create(data)
-        return movie
+        //busco en el modelo del usuario que exista el correo para asi guardar el user_id
+        const user = await this.users.getByEmail(data.email)
+        if (user) {
+            data.creator = user._id
+            data.email = undefined
+    
+            const movie = await MovieModel.create(data)
+            return movie
+        } else {
+            return {succes:false , message: "accion incorrecta"}
+        }
     }
 
     async update(id,data){

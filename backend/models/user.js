@@ -9,7 +9,10 @@ const userSchema = new Schema({
     city:String,
     email:String,
     password:String,
-    role:Number
+    role: {
+        type:Number,
+        default:0
+    }
 })
 
 const UserModel = mongoose.model("users",userSchema)

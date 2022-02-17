@@ -39,6 +39,12 @@ class Movies{
         const movie = await MovieModel.findByIdAndDelete(id)
         return movie
     }
+
+    async getMovieForCreator(id){
+        const movies = await MovieModel.find({creator:id})
+
+        return movies   
+    }
 }
 
 module.exports = Movies

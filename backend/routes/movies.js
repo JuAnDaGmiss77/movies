@@ -33,6 +33,13 @@ function movies(app){
         // delete: 200 o 202
         return res.status(200).json({ succes: true, movie })
     })
+    //ruta para obtener las peliculas de un solo usuario
+    router.get('/creatormovie/:id', isEditor,async(req,res)=>{
+        const {id} = req.params
+        const movie = await moviesService.getMovieForCreator(id)
+        // put: 200 o 204
+        return res.status(200).json({ success: true, movie })
+    })
 }
 
 

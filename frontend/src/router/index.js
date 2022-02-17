@@ -6,6 +6,8 @@ import PanelAdmin from '../views/admin/PanelAdmin'
 import DetailUser from '../views/admin/DetailUser'
 import EditUser from '../views/admin/EditUser'
 import CreateUser from '../views/admin/CreateUser'
+import PanelCreator from '../views/creator/PanelCreator'
+import CreateMovie from '../views/creator/CreateMovie'
 
 const routes = [
   {
@@ -52,6 +54,18 @@ const routes = [
     name: 'CreateUser',
     component: CreateUser
   },
+  //rutas movies
+  {
+    path: '/panel_creator',
+    name: 'PanelCreator',
+    component: PanelCreator
+  },
+  {
+    path: '/create_movie',
+    name: 'CreateMovie',
+    component: CreateMovie
+  },
+  
 ]
 
 const router = createRouter({

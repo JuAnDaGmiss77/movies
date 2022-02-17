@@ -5,10 +5,10 @@ const { Schema } = mongoose;
 const movieSchema = new Schema({
   title: String,
   description: String,
-  date: Date,
+  date: String,
   rating: Number,
   imgURL : String,
-  editor:{
+  creator:{
     ref:"UserModel",
     type:Schema.Types.ObjectId
   }

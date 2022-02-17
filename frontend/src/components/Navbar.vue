@@ -9,7 +9,7 @@
         </li>
         <li>
           <a v-if="validarEstado == false" class="text-white cursor-pointer mr-4 bg-gray-500 pt-4 p-4 pr-5 pl-5 hover:bg-gray-600 transition-all rounded" @click="goLogin()"><i class="fas fa-question"></i>Login</a>
-          <a v-if="userData.role == 1 & userData != ''" class="text-white cursor-pointer mr-4 bg-gray-500 pt-4 p-4 pr-5 pl-5 hover:bg-gray-600 transition-all rounded" @click="goLogin()"><i class="fas fa-question"></i>My Movies</a>
+          <a v-if="userData.role == 1 & userData != ''" class="text-white cursor-pointer mr-4 bg-gray-500 pt-4 p-4 pr-5 pl-5 hover:bg-gray-600 transition-all rounded" @click="goPanelCreator()"><i class="fas fa-question"></i>My Movies</a>
           <a v-if="userData.role == 2 & userData != ''" class="text-white cursor-pointer mr-4 bg-gray-500 pt-4 p-4 pr-5 pl-5 hover:bg-gray-600 transition-all rounded" @click="goPanelAdmin()"><i class="fas fa-question"></i>Panel Admin</a>
 
           
@@ -43,6 +43,9 @@ export default {
             this.userData = JSON.parse(localStorage.getItem("dataUser"));
             this.validarEstado = true
           }
+        },
+        goPanelCreator() {
+          this.$router.push({ name: "PanelCreator" });
         },
         goLogin() {
           this.$router.push({ name: "Login" });

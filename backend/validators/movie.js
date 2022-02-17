@@ -2,9 +2,9 @@ const { check, validationResult } = require("express-validator")
 
 const validateCreateMovie = [
   check("title").isLength({ min:1 }).isString(),
-  check("date").isDate( {format: 'DD-MM-YYYY'} ),
-  check("rating").isLength({ min:1 }).isNumeric(),
-  check("description").isLength({ min:10 }).isString(),
+  check("date").isDate( {format: 'YYYY-MM-DD'} ),
+  //check("rating").isLength({ min:1 }).isNumeric(),
+  check("description").isLength({ min:1 }).isString(),
   check("email").isEmail(),
   check("imgURL").isLength({ min:1 }).isString(),
   (req, res, next) => {

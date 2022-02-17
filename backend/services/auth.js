@@ -35,6 +35,7 @@ class Auth{
             //     return {success:true,user,token}
             // })
             const dataUser = {
+                _id: user._id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
@@ -57,6 +58,7 @@ class Auth{
             userData.password = await this.hashPassword(userData.password)
             const user = await this.users.create(userData)
             const dataUser = {
+                _id: user._id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,

@@ -1,5 +1,16 @@
 const UserModel = require("../models/user")
+const bcrypt = require("bcrypt")
+
 class Users{
+    
+    async hashPassword(password){
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(password,salt)
+
+        return hash
+
+    }
+
     async get(id){
         const user = await UserModel.findById(id)
         return user
@@ -18,8 +29,14 @@ class Users{
     }
 
     async create(data){
-        const user = await UserModel.create(data)
-        return user
+        if(await this.getByEmail(data.email)){
+            return {success:false,message:"Usuario ya registrado"}
+        } else{
+            data.password = await this.hashPassword(data.password)
+            const user = await UserModel.create(data)
+            return user
+        }
+        
     }
 
     async update(id,data){

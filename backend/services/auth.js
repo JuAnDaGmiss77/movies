@@ -34,14 +34,14 @@ class Auth{
             // jwt.sign(user,jwt_secret,{expiresIn:"1d"},(error,token)=>{
             //     return {success:true,user,token}
             // })
-            const data = {
+            const dataUser = {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 role: user.role?user.role:0,
             }
-            const token = jwt.sign(data,jwt_secret,{expiresIn:"1d"})
-            return {success:true,data,token}
+            const token = jwt.sign(dataUser,jwt_secret,{expiresIn:"1d"})
+            return {success:true,dataUser,token}
         } else {
             return {success:false,message:"Las credenciales no coinciden"}
         }
@@ -56,14 +56,14 @@ class Auth{
             userData.role = 0
             userData.password = await this.hashPassword(userData.password)
             const user = await this.users.create(userData)
-            const data = {
+            const dataUser = {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 role: 0,
             }
-            const token = jwt.sign(data,jwt_secret,{expiresIn:"1d"})
-            return {succes:true,data,token}
+            const token = jwt.sign(dataUser,jwt_secret,{expiresIn:"1d"})
+            return {succes:true,dataUser,token}
         }
         
     }

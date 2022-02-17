@@ -104,14 +104,14 @@ export default {
           });
         } else {
           localStorage.setItem("dataUser", JSON.stringify(response.data.dataUser))
-          this.$router.push({ name: 'About' })
+          this.$router.push({ name: 'Home' })
         }
         
       } catch (error) {
         Swal.fire({
           title: "OPPS",
-          text: "Algo ha ocurrido en el servidor",
-          icon: "error",
+          text: "Complete todos los campos",
+          icon: "warning",
         });
       }
 

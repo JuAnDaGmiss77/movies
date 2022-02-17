@@ -252,7 +252,7 @@ export default {
         const response = await axios.post("auth/signup/", this.user, {
           withCredentials: true,
         });
-        if (response.data.succes == false) {
+        if (response.data.success == false) {
             Swal.fire({
             title: "OPPS",
             text: response.data.message,
@@ -260,13 +260,13 @@ export default {
           });
         } else {
           localStorage.setItem("dataUser", JSON.stringify(response.data.dataUser))
-          this.$router.push({ name: 'About' })
+          this.$router.push({ name: 'Home' })
         }
       } catch (error) {
         Swal.fire({
           title: "OPPS",
-          text: "Algo ha ocurrido en el servidor",
-          icon: "error",
+          text: "Complete todos los campos",
+          icon: "warning",
         });
       }
     },
